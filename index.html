@@ -30,13 +30,30 @@
             </header>
 
         <p>Press any Key to get Started!</p>
-        <p>Number of Wins</p>
-        <p>Current Word</p>
-        <p>"Hidden Word"</p>
+        <span id="wins">Number of Wins</span>
+        <br>
+        <!--Letter Spaces for current word-->
+        <p class="letterSpace" id="letter-space-1">1</p>
+        <p class="letterSpace" id="letter-space-2">2</p>
+        <p class="letterSpace" id="letter-space-3">3</p>
+        <p class="letterSpace" id="letter-space-4">4</p>
+        <p class="letterSpace" id="letter-space-5">5</p>
+        <p class="letterSpace" id="letter-space-6">6</p>
+        <p class="letterSpace" id="letter-space-7">7</p>
+        <p class="letterSpace" id="letter-space-8">8</p>
+        <p class="letterSpace" id="letter-space-9">9</p>
+        <p class="letterSpace" id="letter-space-10">10</p>
+        <p class="letterSpace" id="letter-space-11">11</p>
+        <p class="letterSpace" id="letter-space-12">12</p>
+        <p class="letterSpace" id="letter-space-13">13</p>
+        <p class="letterSpace" id="letter-space-14">14</p>
+        <p class="letterSpace" id="letter-space-15">15</p>
+        <p id="hidden-word">"Hidden Word"</p>
+        <p id="recent-guess">recent guess</p>
         <p>Number of Guesses Remaining</p>
-        <p>"guesses"</p>
-        <p>Letters Already Guessed</p>
-        <p>"Guessed Letters"</p>
+        <p id="remaining-guesses">20</p>
+        <p>Incorrect Letters You've Already Guessed</p>
+        <p id="wrong-guesses">"Guessed Letters"</p>
 
 
         <p>
@@ -48,13 +65,146 @@
         </footer>
 
         <!--Here's my Javascript-->
-        <script>
+        <script type="text/javascript">
 
-            var videoGames {
-                bioshock:["b","i","o","s","h","o","c","k"],
-                
+ 
+        var videoGames = ["bioshock", "super mario", "metroid", "tetris", "dragon's Lair", "undertale", "uncharted"];
+/*
+        var letterSpace = {
+            1: function (recentGuess) {
+                letterSpace1.textContent = recentGuess},
+            2: function (recentGuess) {
+                letterSpace2.textContent = recentGuess},
+            3: function (recentGuess) {
+                letterSpace3.textContent = recentGuess},
+            4: function (recentGuess) {
+                letterSpace4.textContent = recentGuess},
+            5: function (recentGuess) {
+                letterSpace5.textContent = recentGuess},
+            6: function (recentGuess) {
+                letterSpace6.textContent = recentGuess},
+            7: function (recentGuess) {
+                letterSpace7.textContent = recentGuess},
+            8: function (recentGuess) {
+                letterSpace8.textContent = recentGuess},
+            9: function (recentGuess) {
+                letterSpace9.textContent = recentGuess},
+            10: function (recentGuess) {
+                letterSpace10.textContent = recentGuess},
+            11: function (recentGuess) {
+                letterSpace11.textContent = recentGuess},
+            12: function (recentGuess) {
+                letterSpace12.textContent = recentGuess},
+            13: function (recentGuess) {
+                letterSpace13.textContent = recentGuess},
+            14: function (recentGuess) {
+                letterSpace14.textContent = recentGuess},
+            15: function (recentGuess) {
+                letterSpace15.textContent = recentGuess},
+        };
+        */
+
+        var letterSpace = {
+            1: document.getElementById("letter-space-1"),
+            2: document.getElementById("letter-space-2"),
+            3: document.getElementById("letter-space-3"),
+            4: document.getElementById("letter-space-4"),
+            5: document.getElementById("letter-space-5"),
+            6: document.getElementById("letter-space-6"),
+            7: document.getElementById("letter-space-7"),
+            8: document.getElementById("letter-space-8"),
+            9: document.getElementById("letter-space-9"),
+            10: document.getElementById("letter-space-10"),
+            11: document.getElementById("letter-space-11"),
+            12: document.getElementById("letter-space-12"),
+            13: document.getElementById("letter-space-13"),
+            14: document.getElementById("letter-space-14"),
+            15: document.getElementById("letter-space-15"),
+        };
+/*
+            var LetterSpace1 = document.getElementById("letter-space-1");
+            var LetterSpace2 = document.getElementById("letter-space-2");
+            var LetterSpace3 = document.getElementById("letter-space-3");
+            var LetterSpace4 = document.getElementById("letter-space-4");
+            var LetterSpace5 = document.getElementById("letter-space-5");
+            var LetterSpace6 = document.getElementById("letter-space-6");
+            var LetterSpace7 = document.getElementById("letter-space-7");
+            var LetterSpace8 = document.getElementById("letter-space-8");
+            var LetterSpace9 = document.getElementById("letter-space-9");
+            var LetterSpace10 = document.getElementById("letter-space-10");
+            var LetterSpace11 = document.getElementById("letter-space-11");
+            var LetterSpace12 = document.getElementById("letter-space-12");
+            var LetterSpace13 = document.getElementById("letter-space-13");
+            var LetterSpace14 = document.getElementById("letter-space-14");
+            var LetterSpace15 = document.getElementById("letter-space-15");
+*/
+
+            var hiddenWord 
+
+            var displayHiddenWord = document.getElementById("hidden-word");
+
+            var wins = document.getElementById("wins");
+
+            var recentGuess = document.getElementById("recent-guess");
+
+            var badGuess = document.getElementById("wrong-guesses");
+
+            var wrongGuesses=[];
+
+            var remainingGuesses = 20;
+            var displayRemainingGuesses = document.getElementById("remaining-guesses");
+
+            //userGuesses.onkeyup = function(event) {
+            //    if ()
+            //}
+
+
+// Set starting parameters (This may eventually be coopted into a "Start Game" button, but for now starts with page load.)
+    window.onload = function (event) {
+        //set all of the letter spaces to "_"
+        recentGuess.textContent = "-";
+        //randomnly select videogame from theme array. 
+        hiddenWord = videoGames[Math.floor(Math.random() * videoGames.length)];
+        //How to retrieve a random item from an array was explained by Jacob Relkin on Stack Overflow, and edited by Ankur Soni. Source: "https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array"
+        //Send the hidden word to a displayable paragraph in the HTML.
+        displayHiddenWord.textContent = hiddenWord;
+        var i = (0-1);
+        //eliminates uneeded letter spaces.
+        for (var property1 in letterSpace) {
+            //I learned how to use a for loop in an object at MDN web docs and their many contributors. Source: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"
+            i++
+            if (letterSpace[property1].textContent <= hiddenWord.length){
+                letterSpace[property1].textContent = "_"; 
+            } else {letterSpace[property1].textContent = ""}
+        }
+    };
+
+//What happens every time a player hits a key?
+    document.onkeyup = function (event) {
+        //grab the key the user typed.
+        recentGuess.textContent = event.key;
+        //decrease the remaining guesses.
+        --remainingGuesses;
+        //number subtraction method was explained by George Reith on stack overflow. Source: "https://stackoverflow.com/questions/15664696/minus-equals-in-javascript-what-does-it-mean"
+        //update the remaining guesses in the HTML viewable to the user.
+        displayRemainingGuesses.textContent = remainingGuesses;
+        //compared the grabbed key to the hidden word to find if their guess is correct or not.
+        var i = (0-1);
+        //Use a for loop to go through each letter space.
+        for (var property1 in letterSpace) {
+            i++;
+            //if the guess is right, update the blank spaces to display the correct letters.
+            if (recentGuess.textContent === hiddenWord.charAt(i)){
+                letterSpace[property1].textContent = recentGuess.textContent;
+            //if the guess is wrong, display the letter in the "Already Guessed" section.
+            } else { 
+                //currently broken!!!!!!!!! Sends the letter for each space it registered as wrong in.
+                wrongGuesses.push(recentGuess.textContent);
+                badGuess.textContent = wrongGuesses; 
             }
-        
+        }
+    };
+
         </script>
 
                 
