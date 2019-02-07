@@ -30,34 +30,21 @@
             </header>
 
         <p>Press any Key to get Started!</p>
-        <span id="wins">Number of Wins</span>
+        <p >Number of Wins</p>
+        <p id="wins">0</p>
         <br>
         <!--Letter Spaces for current word-->
 
         <p id="master-p"></p>
 
-
-        <p class="letterSpace" id="letter-space-1">1</p>
-        <p class="letterSpace" id="letter-space-2">2</p>
-        <p class="letterSpace" id="letter-space-3">3</p>
-        <p class="letterSpace" id="letter-space-4">4</p>
-        <p class="letterSpace" id="letter-space-5">5</p>
-        <p class="letterSpace" id="letter-space-6">6</p>
-        <p class="letterSpace" id="letter-space-7">7</p>
-        <p class="letterSpace" id="letter-space-8">8</p>
-        <p class="letterSpace" id="letter-space-9">9</p>
-        <p class="letterSpace" id="letter-space-10">10</p>
-        <p class="letterSpace" id="letter-space-11">11</p>
-        <p class="letterSpace" id="letter-space-12">12</p>
-        <p class="letterSpace" id="letter-space-13">13</p>
-        <p class="letterSpace" id="letter-space-14">14</p>
-        <p class="letterSpace" id="letter-space-15">15</p>
-        <p id="hidden-word">"Hidden Word"</p>
         <p id="recent-guess">recent guess</p>
-        <p>Number of Guesses Remaining</p>
+        <p>Number of Wrong Guesses Remaining</p>
         <p id="remaining-guesses">20</p>
-        <p>Incorrect Letters You've Already Guessed</p>
-        <p id="wrong-guesses">"Guessed Letters"</p>
+        <p>Incorrect Keys You've Already Guessed</p>
+        <p id="wrong-guesses"></p>
+        <p>Correct Keys You've Already Guessed</p>
+        <p id="correct-guesses"></p>
+        <p class="hideMe" id="hidden-word">"Hidden Word"</p>
 
 
         <p>
@@ -69,33 +56,13 @@
         </footer>
 
         <!--Here's my Javascript-->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        <script type="text/javascript">
 
-        var letterSpace = {
-            1: document.getElementById("letter-space-1"),
-            2: document.getElementById("letter-space-2"),
-            3: document.getElementById("letter-space-3"),
-            4: document.getElementById("letter-space-4"),
-            5: document.getElementById("letter-space-5"),
-            6: document.getElementById("letter-space-6"),
-            7: document.getElementById("letter-space-7"),
-            8: document.getElementById("letter-space-8"),
-            9: document.getElementById("letter-space-9"),
-            10: document.getElementById("letter-space-10"),
-            11: document.getElementById("letter-space-11"),
-            12: document.getElementById("letter-space-12"),
-            13: document.getElementById("letter-space-13"),
-            14: document.getElementById("letter-space-14"),
-            15: document.getElementById("letter-space-15"),
-        };
+        var letterSpace = {};
 
         var videoGames = ["Bioshock", "Super Mario", "Metroid", "Tetris", "Dragon's Lair", "Undertale", "Uncharted"];
 
-        var alphabet = ["a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-
-        var hiddenWord 
-
-        //var pCount = hiddenWord.length
+        var hiddenWord; 
 
         var displayHiddenWord = document.getElementById("hidden-word");
 
@@ -107,67 +74,107 @@
 
         var wrongGuesses=[];
 
-        var remainingGuesses = 20;
+        var goodGuess = document.getElementById("correct-guesses");
+
+        var correctGuesses=[];
+
+        var remainingGuesses;
+
+        var spacesFilled;
     
         var displayRemainingGuesses = document.getElementById("remaining-guesses");
 
-// Set starting parameters (This may eventually be coopted into a "Start Game" button, but for now starts with page load.)
-    window.onload = function (event) {
-        //set all of the letter spaces to "_"
-        recentGuess.textContent = "-";
+    function selectGame(){
         //randomnly select videogame from theme array. 
-        hiddenWord = videoGames[Math.floor(Math.random() * videoGames.length)];
-        //How to retrieve a random item from an array was explained by Jacob Relkin on Stack Overflow, and edited by Ankur Soni. Source: "https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array"
+        hiddenWord = videoGames[Math.floor(Math.random() * videoGames.length)]; 
+        //Set remaining guesses to name length plus three.
+        remainingGuesses = (hiddenWord.length);
+        //display remaining guesses to player
+        displayRemainingGuesses.textContent = remainingGuesses;
+        //sets win condition to 0
+        spacesFilled = 0;
+        //create letter spaces, and set them to "_"
+        for (i = 1; i <= hiddenWord.length; i++) {
+            var letterSpaceP = document.createElement("p");
+            var underscore = document.createTextNode("_");
+            letterSpaceP.appendChild(underscore);
+            letterSpaceP.setAttribute("id", "letter-space-" + [i]);
+            letterSpaceP.setAttribute("class", "letterSpace");
+            var masterP = document.getElementById("master-p");
+            masterP.appendChild(letterSpaceP);
+            }
+        //Populates the letterSpace object with properties. I figured out how to add object properties in a for loop by using tips from TommyBs at Stack Overflow. Source: "https://stackoverflow.com/questions/15907052/trying-to-add-multiple-properties-to-javascript-object-using-a-loop"
+        for (i = 1; i <= hiddenWord.length; i++){
+            letterSpace["0" + i] = document.getElementById("letter-space-" + [i]);
+        }
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
-        var i = (0-1);
-        //eliminates uneeded letter spaces.
-        for (var property1 in letterSpace) {
-            //I learned how to use a for loop in an object at MDN web docs and their many contributors. Source: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"
-            i++
-            if (letterSpace[property1].textContent <= hiddenWord.length){
-                letterSpace[property1].textContent = "_"; 
-            } else {letterSpace[property1].textContent = ""}
+    };
+
+    function checkWrong(){
+        //if the guess is wrong, display the letter in the "Already Guessed" section, and reduce the number of remaining guesses.
+        if (((displayHiddenWord.textContent.includes(recentGuess.textContent.toLowerCase()) === false) && (badGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false))) {
+            wrongGuesses.push(recentGuess.textContent);
+            badGuess.textContent = wrongGuesses;
+            --remainingGuesses
+            if (displayRemainingGuesses.textContent === "1") {
+                alert("You Lose! Let's try again!");
+                resetGame();
+                };
+            }
+        //update the remaining guesses in the HTML viewable to the user.
+        displayRemainingGuesses.textContent = remainingGuesses;
+    }
+
+    //Reset function that changes all of the variables back to their starting positions and then recalls the functions nessesary to start the game.
+    function resetGame() {
+        //Resets win condition
+        spacesFilled = 0;
+        for (i = 1; i <= hiddenWord.length; i++) {
+            var letterSpaceP = document.getElementById("letter-space-" + [i]);
+            letterSpaceP.parentNode.removeChild(letterSpaceP);
+            }
+        //Populates the letterSpace object with properties. I figured out how to add object properties in a for loop by using tips from TommyBs at Stack Overflow. Source: "https://stackoverflow.com/questions/15907052/trying-to-add-multiple-properties-to-javascript-object-using-a-loop"
+        for (i = 1; i <= hiddenWord.length; i++){
+            delete letterSpace["0" + i];
         }
+        selectGame();
+        wrongGuesses=[];
+        badGuess.textContent = wrongGuesses;
     };
 
 
+// Set starting parameters on page load
+    window.onload = function (event) {
+        // set the Hidden Word
+        selectGame();
+};
 
 //What happens every time a player hits a key?
     document.onkeyup = function (event) {
         //grab the key the user typed.
         recentGuess.textContent = event.key;
-        //decrease the remaining guesses.
-        --remainingGuesses;
-        //number subtraction method was explained by George Reith on stack overflow. Source: "https://stackoverflow.com/questions/15664696/minus-equals-in-javascript-what-does-it-mean"
-        //update the remaining guesses in the HTML viewable to the user.
-        displayRemainingGuesses.textContent = remainingGuesses;
         //compared the grabbed key to the hidden word to find if their guess is correct or not.
-        var i = (0-1);
         //Use a for loop to go through each letter space.
+        var i = -1;
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
-            if (recentGuess.textContent === hiddenWord.charAt(i).toLowerCase()){
-                letterSpace[property1].textContent = recentGuess.textContent;
-            //if the guess is wrong, display the letter in the "Already Guessed" section.
-            } else { 
-                //currently broken!!!!!!!!! Sends the letter for each space it registered as wrong in.
-                    wrongGuesses.push(recentGuess.textContent);
-                    badGuess.textContent = wrongGuesses;
-                }
-            };
+            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()){
+                letterSpace[property1].textContent = hiddenWord.charAt(i);
+                correctGuesses.push(recentGuess.textContent);
+                goodGuess.textContent = correctGuesses;
+                ++spacesFilled;
+                if (spacesFilled === hiddenWord.length) {
+                    ++wins.textContent;
+                    alert("You Win! How many more can you win? Let's keep going!");
+                    resetGame();
+                };
+            };  
+        }; 
+        checkWrong();
     };
 
-    for (var i = 0; i <= hiddenWord.length; i++) {
-            var letterSpaceP = function () { document.createElement("<p>");
-            letterSpaceP.textContent("_");
-            letterSpaceP.appendChild(letterSpaceP);
-            }
-    }
-
-
-})
         </script>
 
                 

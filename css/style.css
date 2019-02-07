@@ -1,3 +1,7 @@
 .letterSpace {
     display: inline-block;
 }
+
+.hideMe {
+    left: -15;
+}
