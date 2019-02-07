@@ -21,7 +21,9 @@
 
         var remainingGuesses;
 
-        var spacesFilled;
+        var emptySpaces;
+
+        var filledSpaces;
     
         var displayRemainingGuesses = document.getElementById("remaining-guesses");
 
@@ -32,8 +34,6 @@
         remainingGuesses = (hiddenWord.length);
         //display remaining guesses to player
         displayRemainingGuesses.textContent = remainingGuesses;
-        //sets win condition to 0
-        spacesFilled = 0;
         //create letter spaces, and set them to "_"
         for (i = 1; i <= hiddenWord.length; i++) {
             var letterSpaceP = document.createElement("p");
@@ -48,6 +48,15 @@
         for (i = 1; i <= hiddenWord.length; i++){
             letterSpace["0" + i] = document.getElementById("letter-space-" + [i]);
         }
+        //sets win condition
+        emptySpaces = 0;
+        for (var property1 in letterSpace) {
+            if (letterSpace[property1].textContent = "_") {
+                ++emptySpaces
+            };
+        }
+        console.log(emptySpaces);
+
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
     };
@@ -55,7 +64,7 @@
 //
     function checkWrong(){
         //if the guess is wrong, display the letter in the "Already Guessed" section, and reduce the number of remaining guesses.
-        if (((displayHiddenWord.textContent.includes(recentGuess.textContent.toLowerCase()) === false) && (badGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false))) {
+        if (((displayHiddenWord.textContent.toLowerCase().includes(recentGuess.textContent.toLowerCase()) === false) && (badGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false))) {
             wrongGuesses.push(recentGuess.textContent);
             badGuess.textContent = wrongGuesses;
             --remainingGuesses
@@ -71,7 +80,6 @@
 //Reset function that changes all of the variables back to their starting positions and then recalls the functions nessesary to start the game.
     function resetGame() {
         //Resets win condition
-        spacesFilled = 0;
         for (i = 1; i <= hiddenWord.length; i++) {
             var letterSpaceP = document.getElementById("letter-space-" + [i]);
             letterSpaceP.parentNode.removeChild(letterSpaceP);
@@ -83,6 +91,8 @@
         selectGame();
         wrongGuesses=[];
         badGuess.textContent = wrongGuesses;
+        correctGuesses=[];
+        goodGuess.textContent = correctGuesses;
     };
 
 
@@ -96,9 +106,8 @@
     document.onkeyup = function (event) {
         //grab the key the user typed.
         recentGuess.textContent = event.key;
-        //compared the grabbed key to the hidden word to find if their guess is correct or not.
-        //Use a for loop to go through each letter space.
-        var i = -1;
+        //compared the grabbed key to the hidden word to find if their guess is correct or not using a for loop to go through each letter space.
+        var i = -1
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
@@ -108,13 +117,20 @@
                     correctGuesses.push(recentGuess.textContent);
                     goodGuess.textContent = correctGuesses;
                 }
-                ++spacesFilled;
-                if (spacesFilled === hiddenWord.length) {
-                    ++wins.textContent;
-                    alert("You Win! How many more can you win? Let's keep going!");
-                    resetGame();
-                };
             };  
         }; 
         checkWrong();
+        //reset filled spaces, then recount how many filled spaces there are.
+        filledSpaces= 0
+        for (var property1 in letterSpace) {
+            if (letterSpace[property1].textContent !== "_") {
+                ++filledSpaces
+                //If all of the word's spaces have been filled the player wins, and the game resets.
+                if ((emptySpaces - filledSpaces) === 0) {
+                    ++wins.textContent;
+                    alert("You Win! How many more can you win? Let's keep going!");
+                    resetGame();
+                }
+            };
+        }
     };
