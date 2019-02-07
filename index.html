@@ -33,6 +33,10 @@
         <span id="wins">Number of Wins</span>
         <br>
         <!--Letter Spaces for current word-->
+
+        <p id="master-p"></p>
+
+
         <p class="letterSpace" id="letter-space-1">1</p>
         <p class="letterSpace" id="letter-space-2">2</p>
         <p class="letterSpace" id="letter-space-3">3</p>
@@ -65,7 +69,7 @@
         </footer>
 
         <!--Here's my Javascript-->
-        <script type="text/javascript">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
         var letterSpace = {
             1: document.getElementById("letter-space-1"),
@@ -85,9 +89,13 @@
             15: document.getElementById("letter-space-15"),
         };
 
-        var videoGames = ["bioshock", "super mario", "metroid", "tetris", "dragon's Lair", "undertale", "uncharted"];
+        var videoGames = ["Bioshock", "Super Mario", "Metroid", "Tetris", "Dragon's Lair", "Undertale", "Uncharted"];
+
+        var alphabet = ["a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
         var hiddenWord 
+
+        //var pCount = hiddenWord.length
 
         var displayHiddenWord = document.getElementById("hidden-word");
 
@@ -123,6 +131,8 @@
         }
     };
 
+
+
 //What happens every time a player hits a key?
     document.onkeyup = function (event) {
         //grab the key the user typed.
@@ -138,17 +148,26 @@
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
-            if (recentGuess.textContent === hiddenWord.charAt(i)){
+            if (recentGuess.textContent === hiddenWord.charAt(i).toLowerCase()){
                 letterSpace[property1].textContent = recentGuess.textContent;
             //if the guess is wrong, display the letter in the "Already Guessed" section.
             } else { 
                 //currently broken!!!!!!!!! Sends the letter for each space it registered as wrong in.
-                wrongGuesses.push(recentGuess.textContent);
-                badGuess.textContent = wrongGuesses; 
-            }
-        }
+                    wrongGuesses.push(recentGuess.textContent);
+                    badGuess.textContent = wrongGuesses;
+                }
+            };
     };
 
+    for (var i = 0; i <= hiddenWord.length; i++) {
+            var letterSpaceP = function () { document.createElement("<p>");
+            letterSpaceP.textContent("_");
+            letterSpaceP.appendChild(letterSpaceP);
+            }
+    }
+
+
+})
         </script>
 
                 
