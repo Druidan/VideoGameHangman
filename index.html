@@ -111,6 +111,7 @@
         displayHiddenWord.textContent = hiddenWord;
     };
 
+//
     function checkWrong(){
         //if the guess is wrong, display the letter in the "Already Guessed" section, and reduce the number of remaining guesses.
         if (((displayHiddenWord.textContent.includes(recentGuess.textContent.toLowerCase()) === false) && (badGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false))) {
@@ -126,7 +127,7 @@
         displayRemainingGuesses.textContent = remainingGuesses;
     }
 
-    //Reset function that changes all of the variables back to their starting positions and then recalls the functions nessesary to start the game.
+//Reset function that changes all of the variables back to their starting positions and then recalls the functions nessesary to start the game.
     function resetGame() {
         //Resets win condition
         spacesFilled = 0;
@@ -160,10 +161,12 @@
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
-            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()){
+            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
                 letterSpace[property1].textContent = hiddenWord.charAt(i);
-                correctGuesses.push(recentGuess.textContent);
-                goodGuess.textContent = correctGuesses;
+                if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
+                    correctGuesses.push(recentGuess.textContent);
+                    goodGuess.textContent = correctGuesses;
+                }
                 ++spacesFilled;
                 if (spacesFilled === hiddenWord.length) {
                     ++wins.textContent;
