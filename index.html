@@ -32,17 +32,16 @@
                     <h3>How well do you know games?</h3>
                 </div>
                 <div class="row justify-content-center header-rows">
-                    <h2>Guess the Following Video Game Title:</h2>
+                    <h2>Guess the Following Title:</h2>
+                </div>
+                <div class="row justify-content-center header-rows guessesRow">
+                    <h3 class="guessesText">Chances Remaining</h3>
+                    <h3 class="card-text remainingGuesses" id="remaining-guesses">3</h3>
                 </div>
                 <div class="row justify-content-center masterP" >
                     <p class="justify-content-center masterP" id="master-p"></p>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title guessesText">Wrong Guesses Remaining</h5>
-                        <p class="card-text remainingGuesses" id="remaining-guesses">3</p>
-                    </div>
-                </div>
+
                     
             </header>
 
@@ -51,10 +50,10 @@
                 <p class="winsText col-xs-4" id="wins">0</p>
             </div>
             <div class="row infoRows">
-                <p class="infoText col-xs-8">Incorrect Keys You've Already Guessed</p>
+                <p class="infoText col-xs-8">Incorrect Guesses</p>
                 <p class="activeText col-xs-4" id="wrong-guesses">-</p>
             </div>
-            <div class="row infoRows">
+            <div class="row infoRows hideMe">
                 <p class="infoText col-xs-8">Correct Keys You've Already Guessed</p>
                 <p class="activeText col-xs-4" id="correct-guesses">-</p>
             </div>
@@ -77,6 +76,7 @@
         <div class="row hideMe">
             <p id="recent-guess">recent guess</p>
             <p id="hidden-word">"Hidden Word"</p>
+            <p id="non-keys"></p>
         </div>
 
         </main>

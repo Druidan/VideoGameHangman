@@ -27,7 +27,14 @@
     
         var displayRemainingGuesses = document.getElementById("remaining-guesses");
 
-        var displayImg = document.getElementById("background-image")
+        var givenKeys=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9"];
+
+        var currentNonGivenKeys = [];
+
+        var nonKey = document.getElementById("non-keys");
+
+        var displayImg = document.getElementById("background-image");
+
 
     function selectGame(){
         //randomnly select videogame from theme array. 
@@ -37,7 +44,7 @@
             remainingGuesses = (hiddenWord.length+(7-hiddenWord.length));
         } else {
             remainingGuesses = 4;
-        }
+        };
         //display remaining guesses to player
         displayRemainingGuesses.textContent = remainingGuesses;
         //create letter spaces, and set them to "_"
@@ -49,11 +56,37 @@
             letterSpaceP.setAttribute("class", "letterSpace");
             var masterP = document.getElementById("master-p");
             masterP.appendChild(letterSpaceP);
-            }
+            };
         //Populates the letterSpace object with properties. I figured out how to add object properties in a for loop by using tips from TommyBs at Stack Overflow. Source: "https://stackoverflow.com/questions/15907052/trying-to-add-multiple-properties-to-javascript-object-using-a-loop"
         for (i = 1; i <= hiddenWord.length; i++){
             letterSpace["0" + i] = document.getElementById("letter-space-" + [i]);
-        }
+        };
+        //reveal all non-letter, non-number items
+        var i = -1
+        for (var property1 in letterSpace) {
+            i++;
+            //if the character in the hidden word is a space, create a blank space amongst the empty spaces.
+            if (hiddenWord.charAt(i).toLowerCase() === " ") {
+                var letterSpaceP = document.getElementById("letter-space-" + [i+1]);
+                letterSpaceP.setAttribute("class", "hiddenLetter");
+                var underscore = document.createTextNode("_"); 
+                letterSpaceP.appendChild(underscore);
+            };       
+            //if the space in the hidden word is not one of the given keys, reveal it.         
+            if ((givenKeys.includes(hiddenWord.charAt(i).toLowerCase()) === false) && (hiddenWord.charAt(i).toLowerCase() !== " ")) {
+                currentNonGivenKeys.push(hiddenWord.charAt(i).toLowerCase());
+                nonKey.textContent = currentNonGivenKeys;
+                    letterSpace[property1].textContent = nonKey.textContent;
+                    console.log(nonKey.textContent);
+                    console.log(hiddenWord.charAt(i));
+                    console.log(letterSpace[property1].textContent);
+                };
+        };
+       /* for (var property1 in letterSpace) { 
+            i++;
+            var searchGivenKeys = givenKeys.includes(hiddenWord.charAt(i).toLowerCase())
+*/
+            
         //sets win condition
         emptySpaces = 0;
         for (var property1 in letterSpace) {
@@ -64,6 +97,32 @@
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
     };
+/*
+    function revealNonGiven() {
+        var j = -1
+        for (var property1 in letterSpace) {
+            j++;
+            //if the character in the hidden word is a space, create a blank space amongst the empty spaces.
+            if (hiddenWord.charAt(j).toLowerCase() === " ") {
+                var letterSpaceP = document.getElementById("letter-space-" + [j+1]);
+                letterSpaceP.setAttribute("class", "hiddenLetter");
+                var underscore = document.createTextNode("__"); 
+                letterSpaceP.appendChild(underscore);
+            }
+        };
+        for (var property1 in letterSpace) { 
+            j++;
+            var searchGivenKeys = givenKeys.includes(hiddenWord.charAt(j).toLowerCase())
+            console.log(hiddenWord.charAt(j));
+            console.log(givenKeys);
+            console.log(searchGivenKeys);
+            //if the space in the hidden word is not one of the given keys, reveal it.
+            if (searchGivenKeys === false) {
+                letterSpace[property1].textContent = hiddenWord.charAt(j).toLowerCase();
+            };
+    };
+};
+*/
 
 //
     function checkWrong(){
@@ -97,23 +156,24 @@
         badGuess.textContent = wrongGuesses;
         correctGuesses=[];
         goodGuess.textContent = correctGuesses;
+        currentNonGivenKeys=[];
+        nonKey.textContent = currentNonGivenKeys;
     };
 
 //Background Image Toggle Function
     function toggleImg() {
-        if (window.innerWidth >= 720) {
+        if (window.innerWidth >= 960) {
             displayImg.removeAttribute("src");
             wideImg = document.createAttribute("src");
             wideImg.value = "images/TVwide.png";
             displayImg.setAttributeNode(wideImg);
-        }
-        else {
+        } else {
             displayImg.removeAttribute("src");
             thinImg = document.createAttribute("src");
             thinImg.value = "images/TVthin.png";
             displayImg.setAttributeNode(thinImg);
-        }    
-    }
+        }; 
+    };
 
 // Set starting parameters on page load
     window.onload = function (event) {
@@ -138,26 +198,19 @@ window.onresize = function (event) {
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
-            if ((recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) && (recentGuess.textContent.toLowerCase() !== " ")) { 
+            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
                 letterSpace[property1].textContent = hiddenWord.charAt(i);
                 if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
                     correctGuesses.push(recentGuess.textContent);
                     goodGuess.textContent = correctGuesses;
                 }
-            };  
-            if ((recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) && (recentGuess.textContent.toLowerCase() === " ")) { 
-                letterSpace[property1].textContent = "-";
-                if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
-                    correctGuesses.push(recentGuess.textContent);
-                    goodGuess.textContent = correctGuesses;
-                }
-            };  
+            }; 
         }; 
         checkWrong();
         //reset filled spaces, then recount how many filled spaces there are.
-        filledSpaces= 0
+        filledSpaces= 1
         for (var property1 in letterSpace) {
-            if (letterSpace[property1].textContent !== "_") {
+            if ((givenKeys.includes(letterSpace[property1].textContent) === true) && (letterSpace[property1].textContent !== "_")) {
                 ++filledSpaces
                 //If all of the word's spaces have been filled the player wins, and the game resets.
                 if ((emptySpaces - filledSpaces) === 0) {
@@ -167,4 +220,8 @@ window.onresize = function (event) {
                 }
             };
         }
-    };
+        console.log(filledSpaces);
+        console.log(emptySpaces);
+    }
+
+
