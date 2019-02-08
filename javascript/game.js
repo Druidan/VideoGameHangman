@@ -1,7 +1,7 @@
 
         var letterSpace = {};
 
-        var videoGames = ["Bioshock", "Super Mario", "Metroid", "Tetris", "Dragon's Lair", "Undertale", "Uncharted"];
+        var videoGames = ["Bioshock", "Super Mario", "Metroid", "Tetris", "Dragon's Lair", "Undertale", "Uncharted", "The Legend of Zelda: Ocarina of Time"];
 
         var hiddenWord; 
 
@@ -27,11 +27,17 @@
     
         var displayRemainingGuesses = document.getElementById("remaining-guesses");
 
+        var displayImg = document.getElementById("background-image")
+
     function selectGame(){
         //randomnly select videogame from theme array. 
         hiddenWord = videoGames[Math.floor(Math.random() * videoGames.length)]; 
-        //Set remaining guesses to name length plus three.
-        remainingGuesses = (hiddenWord.length);
+        //Set remaining guesses.
+        if (hiddenWord.length < 7) {
+            remainingGuesses = (hiddenWord.length+(7-hiddenWord.length));
+        } else {
+            remainingGuesses = 4;
+        }
         //display remaining guesses to player
         displayRemainingGuesses.textContent = remainingGuesses;
         //create letter spaces, and set them to "_"
@@ -55,8 +61,6 @@
                 ++emptySpaces
             };
         }
-        console.log(emptySpaces);
-
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
     };
@@ -95,11 +99,34 @@
         goodGuess.textContent = correctGuesses;
     };
 
+//Background Image Toggle Function
+    function toggleImg() {
+        if (window.innerWidth >= 720) {
+            displayImg.removeAttribute("src");
+            wideImg = document.createAttribute("src");
+            wideImg.value = "images/TVwide.png";
+            displayImg.setAttributeNode(wideImg);
+        }
+        else {
+            displayImg.removeAttribute("src");
+            thinImg = document.createAttribute("src");
+            thinImg.value = "images/TVthin.png";
+            displayImg.setAttributeNode(thinImg);
+        }    
+    }
 
 // Set starting parameters on page load
     window.onload = function (event) {
+        //adjust background image based on window size
+        toggleImg();
         // set the Hidden Word
         selectGame();
+};
+
+//change background image whenever screen is resized.
+window.onresize = function (event) {
+    //adjust background image based on window size
+    toggleImg();
 };
 
 //What happens every time a player hits a key?
@@ -111,8 +138,15 @@
         for (var property1 in letterSpace) {
             i++;
             //if the guess is right, update the blank spaces to display the correct letters.
-            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
+            if ((recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) && (recentGuess.textContent.toLowerCase() !== " ")) { 
                 letterSpace[property1].textContent = hiddenWord.charAt(i);
+                if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
+                    correctGuesses.push(recentGuess.textContent);
+                    goodGuess.textContent = correctGuesses;
+                }
+            };  
+            if ((recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) && (recentGuess.textContent.toLowerCase() === " ")) { 
+                letterSpace[property1].textContent = "-";
                 if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
                     correctGuesses.push(recentGuess.textContent);
                     goodGuess.textContent = correctGuesses;

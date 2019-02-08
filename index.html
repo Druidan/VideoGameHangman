@@ -17,41 +17,69 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
     <body>
-        <!--first row-->
-            <header class="jumbotron" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h1 class="display-4">Hangman</h1>
-                <p class="lead">Let's Play hangman.</p>
-                <hr class="my-4">
-                <p>...</p>
+        <main class="container-fluid">   
+            <img class="tvBackground" id="background-image">     
+            <header class="row">
+                <div class="row justify-content-center header-rows">
+                    <h1 class="videoGameHead">Video Game Hangman</h1>
+                </div>
+                <div class="row justify-content-center header-rows">
+                    <h3>How well do you know games?</h3>
+                </div>
+                <div class="row justify-content-center header-rows">
+                    <h2>Guess the Following Video Game Title:</h2>
+                </div>
+                <div class="row justify-content-center masterP" >
+                    <p class="justify-content-center masterP" id="master-p"></p>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title guessesText">Wrong Guesses Remaining</h5>
+                        <p class="card-text remainingGuesses" id="remaining-guesses">3</p>
+                    </div>
+                </div>
+                    
             </header>
 
-        <p>Press any Key to get Started!</p>
-        <p >Number of Wins</p>
-        <p id="wins">0</p>
-        <br>
-        <!--Letter Spaces for current word-->
-
-        <p id="master-p"></p>
-
-        <p id="recent-guess">recent guess</p>
-        <p>Number of Wrong Guesses Remaining</p>
-        <p id="remaining-guesses">20</p>
-        <p>Incorrect Keys You've Already Guessed</p>
-        <p id="wrong-guesses"></p>
-        <p>Correct Keys You've Already Guessed</p>
-        <p id="correct-guesses"></p>
-        <p>Keys You've Guessed More than Once</p>
-        <p id="twice-guessed"></p>
-        <p class="hideMe" id="hidden-word">"Hidden Word"</p>
+            <div class="row winsRow">
+                <p class="infoText col-xs-8">Number of Wins</p>
+                <p class="winsText col-xs-4" id="wins">0</p>
+            </div>
+            <div class="row infoRows">
+                <p class="infoText col-xs-8">Incorrect Keys You've Already Guessed</p>
+                <p class="activeText col-xs-4" id="wrong-guesses">-</p>
+            </div>
+            <div class="row infoRows">
+                <p class="infoText col-xs-8">Correct Keys You've Already Guessed</p>
+                <p class="activeText col-xs-4" id="correct-guesses">-</p>
+            </div>
 
 
-        <p>
+        <div class="row">
+            <h1 class="rulesText">Rules:</h1>
+        </div>
+        <ul class="rulesList">
+            <li>Select a letter, space, or punctuation to make a guess.</li>
+            <li>Yes, that means a game title with apostrophes, colons, and spaces are possible here!</li>
+            <li>No need for capitalization! If you select a letter, just use lowercase!</li>
+            <li>If you guess every character in a game's title before you run out of guesses, you win!</li>
+        </ul>
+
+        <div class="row justify-content-center bottom-rows">
+            <h1 class="pressKey">Press any Key to get Started!</h1>
+        </div>  
             
-        </p>
+        <div class="row hideMe">
+            <p id="recent-guess">recent guess</p>
+            <p id="hidden-word">"Hidden Word"</p>
+        </div>
+
+        </main>
 
         <footer>
 
@@ -60,8 +88,6 @@
         <!--Here's my Javascript-->
         <script type="text/javascript" src="javascript/game.js">
         </script>
-
-                
 
     </body>
 </html>

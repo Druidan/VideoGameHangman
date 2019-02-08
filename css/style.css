@@ -1,7 +1,1006 @@
-.letterSpace {
-    display: inline-block;
+/*Universal CSS*/
+
+    body {
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        color: green;
+        font-size: 2vw;
+    }
+
+    main {
+    }
+
+    header {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 3vw;
+    }
+
+    h3 {
+        font-size: 2.5vw;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+/*Header and Rules CSS*/
+
+    .tvBackground {
+        width:100%;
+        height: auto;
+        position: absolute;
+        float: center;
+        z-index: -1;
+    }
+
+    .jumbotron {
+        background-color: transparent;
+    }
+
+    .header-rows {
+        width:100%;
+        position: relative;
+        left: -5%;
+        z-index: -2;
+    }
+
+    .videoGameHead {
+        font-family: 'Press Start 2P', cursive;
+        color: rgb(58, 131, 58);
+        max-width: 70%;
+        font-size: 5.5vw;
+        /* vw as a font size was an idea that came from Chris Coyier at css-tricks. Source: "https://css-tricks.com/fitting-text-to-a-container/"*/
+        margin-top: 15%;
+    }
+
+/*CSS for the interactive game text*/
+
+    .masterP {
+        display: block;
+        justify-content: center;
+        width: 70%;
+        margin-left: 13%;
+        margin-right: 17%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        font-family: 'Press Start 2P', cursive;
+        display: inline-block;
+        padding: 5px;
+
+    }
+
+    .infoText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .card {
+        border: 0px;
+    }
+
+/*CSS to hide parameters that should be invisible*/
+    .hideMe {
+        position: relative;
+        left: -100%;
+        margin: 0;
+    }
+
+@Media screen and (max-width: 750px){
+
+    main {
+        
+    }
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -6%;
+        margin-top: 2%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 10.5%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 25%;
+        top: 24%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 5vw;
+    }
+
+    .winsRow{
+        margin-top: 22%;
+        margin-bottom: 0%;
+        margin-left: 5%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+    }
+
+    .rulesText{
+        font-size: 6vw;
+        padding-left: 10%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .infoText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 14.5%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
+    }
 }
 
-.hideMe {
-    left: -15;
+@Media screen and (max-width: 620px){
+    .card {
+        top: 23.5%;
+    }
+}
+
+@Media screen and (max-width: 605px){
+    .card {
+        top: 23%;
+    }
+}
+@Media screen and (max-width: 590px){
+    .card {
+        top: 22%;
+    }
+}
+
+@Media screen and (max-width: 565px){
+    .card {
+        top: 21.5%;
+    }
+}
+
+@Media screen and (max-width: 640px){
+
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -6%;
+        margin-top: 2%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 10.5%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 25%;
+        top: 24%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 5vw;
+    }
+
+    .winsRow{
+        margin-top: 22%;
+        margin-bottom: 0%;
+        margin-left: 5%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+    }
+
+    .rulesText{
+        font-size: 6vw;
+        padding-left: 10%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .infoText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 14.5%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
+    }
+}
+
+@Media screen and (max-width: 620px){
+    .card {
+        top: 23.5%;
+    }
+}
+
+@Media screen and (max-width: 605px){
+    .card {
+        top: 23%;
+    }
+}
+@Media screen and (max-width: 590px){
+    .card {
+        top: 22%;
+    }
+}
+
+@Media screen and (max-width: 565px){
+    .card {
+        top: 21.5%;
+    }
+}
+
+
+@Media screen and (max-width: 540px){
+
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -6%;
+        margin-top: 2%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 11%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 2;
+        top: 21%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 5vw;
+    }
+
+    .winsRow{
+        margin-top: 22%;
+        margin-bottom: 0%;
+        margin-left: 5%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+    }
+
+    .rulesText{
+        font-size: 6vw;
+        padding-left: 10%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .infoText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 14.5%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
+    }
+}
+
+@Media screen and (max-width: 530px){
+    .card {
+        top: 21%;
+    }
+}
+
+@Media screen and (max-width: 520px){
+    .card {
+        top: 20.5%;
+    }
+}
+@Media screen and (max-width: 505px){
+    .card {
+        top: 20%;
+    }
+}
+
+@Media screen and (max-width: 495px){
+    .card {
+        top: 19.5%;
+    }
+}
+
+@Media screen and (max-width: 480px){
+
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -6%;
+        margin-top: 1%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 12%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 2;
+        top: 16.5%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 5vw;
+    }
+
+    .winsRow{
+        margin-top: 22%;
+        margin-bottom: 0%;
+        margin-left: 5%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+    }
+
+    .rulesText{
+        font-size: 6vw;
+        padding-left: 10%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .infoText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 14.5%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
+    }
+}
+
+@Media screen and (max-width: 445px){
+    .card {
+        top: 15%;
+    }
+}
+
+@Media screen and (max-width: 415px){
+    .card {
+        top: 14%;
+    }
+}
+@Media screen and (max-width: 370px){
+    .card {
+        top: 13%;
+    }
+}
+
+@Media screen and (max-width: 345px){
+    .card {
+        top: 12%;
+    }
+}
+
+@Media screen and (max-width: 320px){
+
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -5%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 15%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 2;
+        top: 12%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 6vw;
+    }
+
+    .winsRow{
+        margin-top: 20%;
+        margin-bottom: 0%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+
+    .rulesText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 17%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
+    }
+}
+
+@Media screen and (max-width: 310px){
+    .card {
+        top: 12%;
+    }
+}
+
+@Media screen and (max-width: 300px){
+    .card {
+        top: 11.5%;
+    }
+}
+@Media screen and (max-width: 280px){
+    .card {
+        top: 10%;
+    }
+}
+
+@Media screen and (max-width: 260px){
+    .card {
+        top: 9%;
+    }
+}
+
+@Media screen and (max-width: 240px) {
+
+
+    h2 {
+        font-size: 4vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
+    }
+
+    h3 {
+        margin-top: -3%;
+        font-size: 3.5vw;
+    }
+
+    .header-rows {
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -3%;
+    }
+
+    .videoGameHead {
+        max-width: 50%;
+        margin-top: 15%;
+        font-size: 4.5vw;
+    }
+
+    .masterP {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 35px;
+        margin-left: 10%;
+        margin-right: 20%;
+        left: 0;
+        right: 0;
+    }
+
+    .letterSpace {
+        align-self: center;
+        padding: 1px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
+
+    .card {
+        position: absolute;
+        float: right;
+        background-color: transparent;
+        width: 40vw;
+        z-index: 2;
+        top: 8.5%;
+        right: 21%;
+    }
+
+    .card-title {
+        font-size: 0vw;
+    }
+
+    .guessesText {
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        font-size: 6vw;
+    }
+
+    .winsRow{
+        margin-top: 15%;
+        margin-bottom: 0%;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+
+    .rulesText{
+        font-size: 4.5vw;
+        padding-left: 15%;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .winsText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 21%;
+        margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 5vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 5%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 4vw;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: -3%;
+    }
+
+
 }
