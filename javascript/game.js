@@ -57,10 +57,12 @@
             var masterP = document.getElementById("master-p");
             masterP.appendChild(letterSpaceP);
             };
+
         //Populates the letterSpace object with properties. I figured out how to add object properties in a for loop by using tips from TommyBs at Stack Overflow. Source: "https://stackoverflow.com/questions/15907052/trying-to-add-multiple-properties-to-javascript-object-using-a-loop"
         for (i = 1; i <= hiddenWord.length; i++){
             letterSpace["0" + i] = document.getElementById("letter-space-" + [i]);
         };
+
         //reveal all non-letter, non-number items
         var i = -1
         for (var property1 in letterSpace) {
@@ -71,60 +73,32 @@
                 letterSpaceP.setAttribute("class", "hiddenLetter");
                 var underscore = document.createTextNode("_"); 
                 letterSpaceP.appendChild(underscore);
+                console.log(letterSpaceP);
             };       
             //if the space in the hidden word is not one of the given keys, reveal it.         
             if ((givenKeys.includes(hiddenWord.charAt(i).toLowerCase()) === false) && (hiddenWord.charAt(i).toLowerCase() !== " ")) {
-                currentNonGivenKeys.push(hiddenWord.charAt(i).toLowerCase());
-                nonKey.textContent = currentNonGivenKeys;
-                    letterSpace[property1].textContent = nonKey.textContent;
+                //currentNonGivenKeys.push(hiddenWord.charAt(i).toLowerCase());
+                //nonKey.textContent = currentNonGivenKeys;
+                letterSpace[property1].textContent = hiddenWord.charAt(i)
+                //nonKey.textContent;
                     console.log(nonKey.textContent);
                     console.log(hiddenWord.charAt(i));
                     console.log(letterSpace[property1].textContent);
                 };
         };
-       /* for (var property1 in letterSpace) { 
-            i++;
-            var searchGivenKeys = givenKeys.includes(hiddenWord.charAt(i).toLowerCase())
-*/
             
         //sets win condition
         emptySpaces = 0;
         for (var property1 in letterSpace) {
-            if (letterSpace[property1].textContent = "_") {
+            if (letterSpace[property1].textContent === "_") {
                 ++emptySpaces
             };
         }
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
     };
-/*
-    function revealNonGiven() {
-        var j = -1
-        for (var property1 in letterSpace) {
-            j++;
-            //if the character in the hidden word is a space, create a blank space amongst the empty spaces.
-            if (hiddenWord.charAt(j).toLowerCase() === " ") {
-                var letterSpaceP = document.getElementById("letter-space-" + [j+1]);
-                letterSpaceP.setAttribute("class", "hiddenLetter");
-                var underscore = document.createTextNode("__"); 
-                letterSpaceP.appendChild(underscore);
-            }
-        };
-        for (var property1 in letterSpace) { 
-            j++;
-            var searchGivenKeys = givenKeys.includes(hiddenWord.charAt(j).toLowerCase())
-            console.log(hiddenWord.charAt(j));
-            console.log(givenKeys);
-            console.log(searchGivenKeys);
-            //if the space in the hidden word is not one of the given keys, reveal it.
-            if (searchGivenKeys === false) {
-                letterSpace[property1].textContent = hiddenWord.charAt(j).toLowerCase();
-            };
-    };
-};
-*/
 
-//
+//Function to check if the guess is wrong
     function checkWrong(){
         //if the guess is wrong, display the letter in the "Already Guessed" section, and reduce the number of remaining guesses.
         if (((displayHiddenWord.textContent.toLowerCase().includes(recentGuess.textContent.toLowerCase()) === false) && (badGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false))) {
@@ -133,6 +107,7 @@
             --remainingGuesses
             if (displayRemainingGuesses.textContent === "1") {
                 alert("You Lose! Let's try again!");
+                wins.textContent = "0";
                 resetGame();
                 };
             }
@@ -195,17 +170,21 @@ window.onresize = function (event) {
         recentGuess.textContent = event.key;
         //compared the grabbed key to the hidden word to find if their guess is correct or not using a for loop to go through each letter space.
         var i = -1
-        for (var property1 in letterSpace) {
-            i++;
-            //if the guess is right, update the blank spaces to display the correct letters.
-            if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
-                letterSpace[property1].textContent = hiddenWord.charAt(i);
-                if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
-                    correctGuesses.push(recentGuess.textContent);
-                    goodGuess.textContent = correctGuesses;
-                }
-            }; 
-        }; 
+        if (givenKeys.includes(recentGuess.textContent.toLowerCase())) {
+            for (var property1 in letterSpace) {
+                i++;
+                //if the guess is right, update the blank spaces to display the correct letters.
+                    if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
+                        letterSpace[property1].textContent = hiddenWord.charAt(i);
+                        if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
+                            correctGuesses.push(recentGuess.textContent);
+                            goodGuess.textContent = correctGuesses;
+                            };
+                        };
+                } 
+            }else {
+                alert("Make sure to only use letters and numbers!"); 
+        };
         checkWrong();
         //reset filled spaces, then recount how many filled spaces there are.
         filledSpaces= 1
@@ -220,8 +199,6 @@ window.onresize = function (event) {
                 }
             };
         }
-        console.log(filledSpaces);
-        console.log(emptySpaces);
     }
 
 

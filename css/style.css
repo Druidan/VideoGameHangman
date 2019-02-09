@@ -14,9 +14,13 @@
 
     h2 {
         font-size: 3vw;
+        width: 50%;
+        margin-top: -3%;
+        left: -10%;
     }
 
     h3 {
+        margin-top: -3%;
         font-size: 2.5vw;
     }
 
@@ -41,7 +45,10 @@
     .header-rows {
         width:100%;
         position: relative;
-        left: -5%;
+        font-size: 1.5vw;
+        top: 17%;
+        left: -3.5%;
+        margin-top: 2.5%;
         z-index: -2;
     }
 
@@ -49,37 +56,127 @@
         font-family: 'Press Start 2P', cursive;
         color: rgb(58, 131, 58);
         max-width: 70%;
-        font-size: 5.5vw;
+        font-size: 3vw;
         /* vw as a font size was an idea that came from Chris Coyier at css-tricks. Source: "https://css-tricks.com/fitting-text-to-a-container/"*/
         margin-top: 15%;
+    }
+
+    .videoGameHead {
+        max-width: 30%;
+        margin-top: 11%;
+
     }
 
 /*CSS for the interactive game text*/
 
     .masterP {
-        display: block;
-        justify-content: center;
-        width: 70%;
-        margin-top:2%;
-        margin-left: 13%;
-        margin-right: 17%;
+        display: flex;
+        flex-wrap: wrap;
+        width: 65%;
+        height: 110px;
+        margin-top: 1%;
+        margin-left: 14.5%;
+        margin-right: 15%;
         left: 0;
         right: 0;
     }
 
     .letterSpace {
+        align-self: center;
         font-family: 'Press Start 2P', cursive;
         display: inline-block;
-        padding: 5px;
+        padding: .5px;
+        font-size: 2vw;
+        margin-bottom: 1vw;
+    }
 
+    .guessesRow {
+        display: flex;
+        margin-top: 3%;
+        max-height: 5vw;
+    }
+
+    .guessesText {
+        max-width: 50%;
+        max-height: 5vw;
+        margin-bottom: 0;
+    }
+
+    .remainingGuesses {
+        max-width: 50%;
+        align-self: middle;
+        padding: 3px 5px 0px 15px;
+    }
+
+    .winsRow{
+        margin-top: 12%;
+        margin-bottom: 0%;
+        margin-left: 6%;
+    }
+
+    .winsText {
+        font-size: 4vw;
+        text-align: center;
+        max-width: 20%;
+        margin-left: 6%;
+        margin-bottom: 0;
+    }
+
+    .infoRows{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 6%;
     }
 
     .infoText{
-        font-size: 4.5vw;
+        font-size: 4vw;
         font-weight: bold;
-        padding-left: 15%;
+        padding-left: 25%;
         max-width: 60%;
         margin-bottom: 0;
+    }
+
+    .activeText {
+        font-size: 4vw;
+        text-align: center;
+        max-width: 12%;
+        margin-left: 4%;
+        margin-bottom: 0;
+    }
+
+    .rulesTitleRow {
+        justify-content: center;
+        margin-left: -5%;
+    }
+
+    .rulesText{
+        font-size: 5vw;
+        max-width: 60%;
+        margin-bottom: 0;
+    }
+
+    .rulesList{
+        font-size: 3vw;
+        padding-left: 10%;
+        padding-right: 5%;
+        margin-bottom: 0;
+    }
+
+    .pressKey {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center; 
+        color: rgb(58, 131, 58);
+        max-width: 50%;
+        font-size: 4.5vw;
+    }
+
+    .bottom-rows {
+        margin-top: 5%;
+        z-index: -2;
+        width:100%;
+        font-size: 1.5vw;
+        position: relative;
+        left: 0%;
     }
 
 /*CSS to hide parameters that should be invisible*/
@@ -95,24 +192,11 @@
 
 @Media screen and (max-width: 1080px){
 
-    h2 {
-        font-size: 3vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 2.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         top: 17%;
-        left: -3%;
+        left: -3.5%;
         margin-top: 2.5%;
     }
 
@@ -160,50 +244,54 @@
     }
 
     .winsRow{
-        margin-top: 25%;
+        margin-top: 12%;
         margin-bottom: 0%;
-        margin-left: 5%;
+        margin-left: 6%;
     }
 
     .infoRows{
         margin-top: 1%;
         margin-bottom: 1%;
-        margin-left: 5%;
-    }
-
-    .rulesText{
-        font-size: 6vw;
-        padding-left: 5%;
-        max-width: 60%;
-        margin-bottom: 0;
+        margin-left: 6%;
     }
 
     .infoText{
-        font-size: 4.5vw;
-        padding-left: 15%;
+        font-size: 4vw;
+        padding-left: 25%;
         max-width: 60%;
         margin-bottom: 0;
     }
 
     .winsText {
-        font-size: 5vw;
+        font-size: 4vw;
         text-align: center;
         max-width: 20%;
-        margin-left: 13%;
+        margin-left: 6%;
         margin-bottom: 0;
     }
 
     .activeText {
-        font-size: 5vw;
+        font-size: 4vw;
         text-align: center;
-        max-width: 20%;
-        margin-left: 11%;
+        max-width: 12%;
+        margin-left: 4%;
+        margin-bottom: 0;
+    }
+
+    .rulesTitleRow {
+        justify-content: center;
+        margin-left: -5%;
+    }
+
+    .rulesText{
+        font-size: 5vw;
+        max-width: 60%;
         margin-bottom: 0;
     }
 
     .rulesList{
-        font-size: 4vw;
-        padding-left: 8%;
+        font-size: 3vw;
+        padding-left: 10%;
         padding-right: 5%;
         margin-bottom: 0;
     }
@@ -230,18 +318,13 @@
 
     h2 {
         font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
     }
 
     h3 {
-        margin-top: -3%;
         font-size: 3.5vw;
     }
 
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         top: 17%;
@@ -304,13 +387,6 @@
         margin-left: 5%;
     }
 
-    .rulesText{
-        font-size: 6vw;
-        padding-left: 5%;
-        max-width: 60%;
-        margin-bottom: 0;
-    }
-
     .infoText{
         font-size: 4.5vw;
         padding-left: 15%;
@@ -331,6 +407,17 @@
         text-align: center;
         max-width: 20%;
         margin-left: 11%;
+        margin-bottom: 0;
+    }
+
+    .rulesTitleRow {
+        justify-content: unset;
+    }
+    
+    .rulesText{
+        font-size: 6vw;
+        padding-left: 5%;
+        max-width: 60%;
         margin-bottom: 0;
     }
 
@@ -361,20 +448,7 @@
 
 @Media screen and (max-width: 750px){
 
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         top: 17%;
@@ -493,21 +567,7 @@
 
 @Media screen and (max-width: 640px){
 
-
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         left: -6%;
@@ -606,21 +666,7 @@
 
 @Media screen and (max-width: 540px){
 
-
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         left: -6%;
@@ -719,21 +765,7 @@
 
 @Media screen and (max-width: 480px){
 
-
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         left: -6%;
@@ -832,21 +864,7 @@
 
 @Media screen and (max-width: 320px){
 
-
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         left: -5%;
@@ -935,21 +953,7 @@
 
 @Media screen and (max-width: 240px) {
 
-
-    h2 {
-        font-size: 4vw;
-        width: 50%;
-        margin-top: -3%;
-        left: -10%;
-    }
-
-    h3 {
-        margin-top: -3%;
-        font-size: 3.5vw;
-    }
-
     .header-rows {
-        width:100%;
         font-size: 1.5vw;
         position: relative;
         left: -3%;
