@@ -19,6 +19,10 @@
 
         var correctGuesses=[];
 
+        var correctSound;
+
+        var winSound;
+
         var remainingGuesses;
 
         var emptySpaces;
@@ -45,6 +49,9 @@
         } else {
             remainingGuesses = 4;
         };
+        //set sounds
+        correctSound = new sound("sounds/Coin.wav");
+        winSound = new sound("sounds/applause2.mp3");
         //display remaining guesses to player
         displayRemainingGuesses.textContent = remainingGuesses;
         //create letter spaces, and set them to "_"
@@ -73,17 +80,10 @@
                 letterSpaceP.setAttribute("class", "hiddenLetter");
                 var underscore = document.createTextNode("_"); 
                 letterSpaceP.appendChild(underscore);
-                console.log(letterSpaceP);
             };       
             //if the space in the hidden word is not one of the given keys, reveal it.         
             if ((givenKeys.includes(hiddenWord.charAt(i).toLowerCase()) === false) && (hiddenWord.charAt(i).toLowerCase() !== " ")) {
-                //currentNonGivenKeys.push(hiddenWord.charAt(i).toLowerCase());
-                //nonKey.textContent = currentNonGivenKeys;
                 letterSpace[property1].textContent = hiddenWord.charAt(i)
-                //nonKey.textContent;
-                    console.log(nonKey.textContent);
-                    console.log(hiddenWord.charAt(i));
-                    console.log(letterSpace[property1].textContent);
                 };
         };
             
@@ -97,6 +97,22 @@
         //Send the hidden word to a displayable paragraph in the HTML.
         displayHiddenWord.textContent = hiddenWord;
     };
+
+//object constructor to handle sound objects
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+            this.sound.play();
+        }
+        this.stop = function(){
+            this.sound.pause();
+        }
+    } 
 
 //Function to check if the guess is wrong
     function checkWrong(){
@@ -176,6 +192,7 @@ window.onresize = function (event) {
                 //if the guess is right, update the blank spaces to display the correct letters.
                     if (recentGuess.textContent.toLowerCase() === hiddenWord.charAt(i).toLowerCase()) { 
                         letterSpace[property1].textContent = hiddenWord.charAt(i);
+                        correctSound.play();
                         if (goodGuess.textContent.includes(recentGuess.textContent.toLowerCase()) === false) {
                             correctGuesses.push(recentGuess.textContent);
                             goodGuess.textContent = correctGuesses;
@@ -194,6 +211,7 @@ window.onresize = function (event) {
                 //If all of the word's spaces have been filled the player wins, and the game resets.
                 if ((emptySpaces - filledSpaces) === 0) {
                     ++wins.textContent;
+                    winSound.play();
                     alert("You Win! How many more can you win? Let's keep going!");
                     resetGame();
                 }
