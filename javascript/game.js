@@ -78,7 +78,7 @@
             if (hiddenWord.charAt(i).toLowerCase() === " ") {
                 var letterSpaceP = document.getElementById("letter-space-" + [i+1]);
                 letterSpaceP.setAttribute("class", "hiddenLetter");
-                var underscore = document.createTextNode("_"); 
+                var underscore = document.createTextNode("-"); 
                 letterSpaceP.appendChild(underscore);
             };       
             //if the space in the hidden word is not one of the given keys, reveal it.         
@@ -98,7 +98,7 @@
         displayHiddenWord.textContent = hiddenWord;
     };
 
-//object constructor to handle sound objects
+//object constructor to handle sound objects. This came directly from w3school's sudio example for HTML5 audio element creation using a function. Source: "https://www.w3schools.com/graphics/game_sound.asp"
     function sound(src) {
         this.sound = document.createElement("audio");
         this.sound.src = src;
@@ -204,9 +204,9 @@ window.onresize = function (event) {
         };
         checkWrong();
         //reset filled spaces, then recount how many filled spaces there are.
-        filledSpaces= 1
+        filledSpaces= 0
         for (var property1 in letterSpace) {
-            if ((givenKeys.includes(letterSpace[property1].textContent) === true) && (letterSpace[property1].textContent !== "_")) {
+            if (givenKeys.includes(letterSpace[property1].textContent.toLowerCase()) === true) {
                 ++filledSpaces
                 //If all of the word's spaces have been filled the player wins, and the game resets.
                 if ((emptySpaces - filledSpaces) === 0) {
@@ -217,6 +217,8 @@ window.onresize = function (event) {
                 }
             };
         }
+        console.log(emptySpaces);
+        console.log(filledSpaces);
     }
 
 

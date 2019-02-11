@@ -270,7 +270,9 @@
 /*CSS to hide parameters that should be invisible*/
     .hideMe {
         position: absolute;
-        left: -100%;
+        width: 0px;
+        font-size: 0% !important;
+        left: -300%;
         margin: 0;
     }
 
